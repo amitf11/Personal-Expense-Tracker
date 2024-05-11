@@ -1,3 +1,10 @@
-export function ExpensePreview() {
-    return <h1>Hello from ExpensePreview</h1>
+export function ExpensePreview({ expense }) {
+    return (
+        <section>
+            {expense.description}
+            {expense.amount}
+            {expense.category}
+
+        </section>
+    )
 }
