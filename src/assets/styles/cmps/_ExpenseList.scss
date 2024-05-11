@@ -1,0 +1,33 @@
+.expense-list {
+    table {
+        width: min(100%, 1000px);
+        margin-inline: auto;
+        border-collapse: collapse;
+        padding: 1em 1.5em;
+        border-radius: 20px;
+        background-color: #f1f7fe;
+        box-shadow: 0 0 2em hsl(231, 62%, 94%);
+    }
+    
+    thead {
+        color: #fffafa;
+        background-color: #3e4684;
+
+        th{
+            padding: 12px 20px;
+            
+            &:first-child{
+                border-top-left-radius: 20px;
+            }
+
+            &:last-child{
+                border-top-right-radius: 20px;
+            }
+        }
+    }
+    
+    
+    td {
+        padding: 8px 20px;
+    }
+}

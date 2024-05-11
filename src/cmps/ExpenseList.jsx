@@ -5,7 +5,7 @@ export function ExpenseList({ expenses, onRemoveExpense, onUpdateExpense }) {
     if (!expenses || !expenses.length) return <div>No expenses to show</div>
 
     return (
-        <section>
+        <section className="expense-list">
             <table>
                 <thead>
                     <tr>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { expenseService } from "../services/expense.service";
+
 import CloseIcon from '@mui/icons-material/Close'
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
@@ -47,60 +48,62 @@ export function AddExpenseForm({ onAddExpense }) {
 
     return (
         <>
-        <Button onClick={() => setIsFormOpen(true)}>Add Expense</Button>
+            <Button onClick={() => setIsFormOpen(true)}>Add Expense</Button>
             {isFormOpen &&
-                <form onSubmit={handleSubmit}>
-                    <CloseIcon onClick={() => setIsFormOpen(false)} className="close-modal-icon" />
-                    <TextField
-                        className="material-ui-input"
-                        id="outlined-basic"
-                        label="Description"
-                        variant="outlined"
-                        required
-                        type="text"
-                        name="description"
-                        value={expenseToAdd.description}
-                        onChange={handleChange}
-                        error={!!validationErrors.description}
-                        helperText={validationErrors.description} />
-
-                    <TextField
-                        className="material-ui-input"
-                        id="outlined-basic"
-                        label="Amount"
-                        variant="outlined"
-                        required
-                        type="number"
-                        name="amount"
-                        value={!expenseToAdd.amount ? '' : expenseToAdd.amount}
-                        onChange={handleChange}
-                        error={!!validationErrors.amount}
-                        helperText={validationErrors.amount} />
-
-                    <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
-                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+                <section className="add-expense-form flex align-center">
+                    <form onSubmit={handleSubmit} className="flex space-between">
+                        <CloseIcon onClick={() => setIsFormOpen(false)} className="close-form-icon" />
+                        <TextField
+                            className="material-ui-input"
+                            id="outlined-basic"
+                            label="Description"
+                            variant="outlined"
                             required
-                            value={expenseToAdd.category}
-                            label="Category"
-                            name="category"
+                            type="text"
+                            name="description"
+                            value={expenseToAdd.description}
                             onChange={handleChange}
-                            error={!!validationErrors.category}
-                        // helperText={validationErrors.category}
-                        >
-                            <MenuItem value={'general'}>General</MenuItem>
-                            <MenuItem value={'personal'}>Personal</MenuItem>
-                            <MenuItem value={'food'}>Food</MenuItem>
-                            <MenuItem value={'housing'}>Housing</MenuItem>
-                            <MenuItem value={'transportation'}>Transportation</MenuItem>
-                            <MenuItem value={'utilities'}>Utilities</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <Button onClick={handleSubmit}>Add +</Button>
-                </form>
-            }
+                            error={!!validationErrors.description}
+                            helperText={validationErrors.description} />
+
+                        <TextField
+                            className="material-ui-input"
+                            id="outlined-basic"
+                            label="Amount"
+                            variant="outlined"
+                            required
+                            type="number"
+                            name="amount"
+                            value={!expenseToAdd.amount ? '' : expenseToAdd.amount}
+                            onChange={handleChange}
+                            error={!!validationErrors.amount}
+                            helperText={validationErrors.amount} />
+
+                        <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
+                            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                required
+                                value={expenseToAdd.category}
+                                label="Category"
+                                name="category"
+                                onChange={handleChange}
+                                error={!!validationErrors.category}
+                            // helperText={validationErrors.category}
+                            >
+                                <MenuItem value={'general'}>General</MenuItem>
+                                <MenuItem value={'personal'}>Personal</MenuItem>
+                                <MenuItem value={'food'}>Food</MenuItem>
+                                <MenuItem value={'housing'}>Housing</MenuItem>
+                                <MenuItem value={'transportation'}>Transportation</MenuItem>
+                                <MenuItem value={'utilities'}>Utilities</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button onClick={handleSubmit}>Add +</Button>
+                    </form>
+                </section>
+                }
         </>
     )
 }

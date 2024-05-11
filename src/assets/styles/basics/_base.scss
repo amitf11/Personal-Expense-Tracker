@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: poppins-regular;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #fffafa;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.material-ui-input {
+    &>* {
+        font-family: poppins-regular !important;
+    }
+}
