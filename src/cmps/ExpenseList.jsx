@@ -1,6 +1,6 @@
 import { ExpensePreview } from "./ExpensePreview";
 
-export function ExpenseList({ expenses, onRemoveExpense }) {
+export function ExpenseList({ expenses, onRemoveExpense, onUpdateExpense }) {
 
     if (!expenses || !expenses.length) return <div>No expenses to show</div>
 
@@ -21,6 +21,7 @@ export function ExpenseList({ expenses, onRemoveExpense }) {
                         <ExpensePreview
                             expense={expense}
                             onRemoveExpense={onRemoveExpense}
+                            onUpdateExpense={onUpdateExpense}
                         />
                     ))}
                 </tbody>

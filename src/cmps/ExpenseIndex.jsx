@@ -26,6 +26,18 @@ export function ExpenseIndex() {
             )
     }
 
+    function onUpdateExpense(updatedExpense) {
+        let idx
+        let updatedExpenses
+        expenseService.save(updatedExpense)
+            .then(
+                // idx = expenses.findIndex(expense => expense._id === updatedExpense._id),
+                // expenses.splice(idx, 1, updatedExpense),
+                updatedExpenses = expenses.map(expense => expense._id === updatedExpense._id ? updatedExpense : expense),
+                setExpenses(updatedExpenses)
+            )
+    }
+
 
     return (
         <>
@@ -35,7 +47,8 @@ export function ExpenseIndex() {
             
             <ExpenseList 
                 expenses={expenses}
-                onRemoveExpense={onRemoveExpense}/>
+                onRemoveExpense={onRemoveExpense}
+                onUpdateExpense={onUpdateExpense} />
         </>
     )
 }
