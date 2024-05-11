@@ -1,3 +1,5 @@
+import { utilService } from "../services/util.service"
+
 export function ExpensePreview({ expense, onRemoveExpense }) {
 
     function removeExpense(expenseId) {
@@ -5,11 +7,15 @@ export function ExpensePreview({ expense, onRemoveExpense }) {
     }
 
     return (
-        <section>
-            {expense.description}
-            {expense.amount}
-            {expense.category}
-            <button onClick={() => removeExpense(expense._id)}>X</button>
-        </section>
+        <tr>
+            <td>{expense.description}</td>
+            <td>{expense.category}</td>
+            <td>${expense.amount}</td>
+            <td>{expense.createdAt ? utilService.getTimePassed(expense.createdAt) : 'Just Now'}</td>
+            <td>
+                <button onClick={() => removeExpense(expense._id)}>X</button>
+                <button>Edit</button>
+            </td>
+        </tr>
     )
 }
