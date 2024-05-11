@@ -10,11 +10,20 @@ export function ExpenseIndex() {
     useEffect(() => {
         expenseService.query()
             .then(res => setExpenses(res))
-    })
+    }, [])
 
     function onAddExpense(expense) {
         expenseService.save(expense)
             .then(setExpenses(prevExpenses => [...prevExpenses, expense]))
+    }
+
+    function onRemoveExpense(expenseId) {
+        let updatedExpenses
+        expenseService.remove(expenseId)
+            .then(
+                updatedExpenses = expenses.filter(expense => expense._id !== expenseId),
+                setExpenses(updatedExpenses)
+            )
     }
 
 
@@ -25,7 +34,8 @@ export function ExpenseIndex() {
                 onAddExpense={onAddExpense} />
             
             <ExpenseList 
-                expenses={expenses}/>
+                expenses={expenses}
+                onRemoveExpense={onRemoveExpense}/>
         </>
     )
 }

@@ -1,17 +1,20 @@
 import { ExpensePreview } from "./ExpensePreview";
 
-export function ExpenseList({ expenses }) {
+export function ExpenseList({ expenses, onRemoveExpense }) {
 
     if (!expenses || !expenses.length) return <div>No expenses to show</div>
 
     return (
-        <>
-            <h1>Hello from ExpenseList</h1>
+        <section>
             {expenses.map(expense => (
+                <article key={expense._id}>
 
-                <ExpensePreview
-                    expense={expense} />
+                    <ExpensePreview
+                        expense={expense}
+                        onRemoveExpense={onRemoveExpense}
+                    />
+                </article>
             ))}
-        </>
+        </section>
     )
 }
