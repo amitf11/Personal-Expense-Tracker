@@ -1,4 +1,5 @@
 import { storageService } from "./async-storage.service"
+import { httpService } from "./http.service"
 
 export const expenseService = {
     query,
@@ -6,22 +7,14 @@ export const expenseService = {
     remove,
     save,
     getEmptyExpense,
-    getByUserId,
+    // getByUserId,
 }
 
 const STORAGE_KEY = "expensesDB"
 const BASE_URL = "expense"
 
-async function query() {
-    const expenses = await storageService.query(STORAGE_KEY)
-    return expenses
-
-    //Un-comment when connecting to back-end
-    // return httpService.get(BASE_URL, params: { filterBy, sortBy })
-}
-
-async function getByUserId(userId) {
-    //Implement after userService
+async function query(filterBy, sortBy) {
+    return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
 }
 
 async function getById(expenseId) {
@@ -32,28 +25,18 @@ async function getById(expenseId) {
 }
 
 async function save(expense) {
-    var savedExpense
     if (expense._id) {
-        savedExpense = await storageService.put(STORAGE_KEY, expense)
-
-        //Need to implement back-end version
+        return httpService.put(`${BASE_URL}/${expense._id}`, expense)
     } else {
-        //Need to implement back-end version
-        
-        //Need to implement userService
-        //Later, need to set owner by the backend
-        // expense.owner = userService.getLoggedinUser()
-        savedExpense = await storageService.post(STORAGE_KEY, expense)
+        return httpService.post(BASE_URL, expense)
     }
-
-    return savedExpense
 }
 
 async function remove(expenseId) {
-    await storageService.remove(STORAGE_KEY, expenseId)
+    // await storageService.remove(STORAGE_KEY, expenseId)
 
     //Backend
-    // return httpService.delete(`${BASE_URL}/${expenseId}`)
+    return httpService.delete(`${BASE_URL}/${expenseId}`)
 }
 
 function getEmptyExpense() {
