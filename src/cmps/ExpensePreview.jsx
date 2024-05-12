@@ -34,7 +34,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
             {(!isEditMode) ?
                 <tr>
                     <td>{expense.description}</td>
-                    <td>{expense.category}</td>
+                    <td>{utilService.capitalizeFirstLetter(expense.category)}</td>
                     <td>${expense.amount}</td>
                     <td>{expense.createdAt ? utilService.getTimePassed(expense.createdAt) : 'Just Now'}</td>
                     <td>
@@ -43,45 +43,45 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                     </td>
                 </tr> : (
                     <tr>
-                    <td>
-                        <input
-                            type="text"
-                            name="description"
-                            onChange={handleChange}
-                            value={expenseToEdit.description}
-                        /></td>
-                    <td>
-                        <select
-                            name="category"
-                            onChange={handleChange}
-                            value={expenseToEdit.category}
-                        >
-                            <option value={'general'}>General</option>
-                            <option value={'personal'}>Personal</option>
-                            <option value={'food'}>Food</option>
-                            <option value={'housing'}>Housing</option>
-                            <option value={'transportation'}>Transportation</option>
-                            <option value={'utilities'}>Utilities</option>
-                        </select></td>
-                    <td>
-                        <input
-                            type="number"
-                            name="amount"
-                            onChange={handleChange}
-                            value={expenseToEdit.amount}
-                        /></td>
-                    <td>
-                        <input
-                            type="date"
-                            name="createdAt"
-                            onChange={handleChange}
-                            value={expenseToEdit.createdAt}
-                        /></td>
-                    <td>
-                        <button onClick={(ev) => updateExpense(ev)}>Save</button>
-                        <button onClick={(ev) => setEditMode(ev, false)}>Cancel</button>
-                    </td>
-                </tr>
+                        <td>
+                            <input
+                                type="text"
+                                name="description"
+                                onChange={handleChange}
+                                value={expenseToEdit.description}
+                            /></td>
+                        <td>
+                            <select
+                                name="category"
+                                onChange={handleChange}
+                                value={expenseToEdit.category}
+                            >
+                                <option value={'general'}>General</option>
+                                <option value={'personal'}>Personal</option>
+                                <option value={'food'}>Food</option>
+                                <option value={'housing'}>Housing</option>
+                                <option value={'transportation'}>Transportation</option>
+                                <option value={'utilities'}>Utilities</option>
+                            </select></td>
+                        <td>
+                            <input
+                                type="number"
+                                name="amount"
+                                onChange={handleChange}
+                                value={expenseToEdit.amount}
+                            /></td>
+                        <td>
+                            <input
+                                type="date"
+                                name="createdAt"
+                                onChange={handleChange}
+                                value={expenseToEdit.createdAt}
+                            /></td>
+                        <td>
+                            <button onClick={(ev) => updateExpense(ev)}>Save</button>
+                            <button onClick={(ev) => setEditMode(ev, false)}>Cancel</button>
+                        </td>
+                    </tr>
                 )}
         </>
     )
