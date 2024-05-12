@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { utilService } from "../services/util.service";
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { expenseService } from "../services/expense.service";
 
 
 export function ExpenseFilter({ onSetFilter, filterBy }) {
@@ -14,6 +15,7 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
         let { value, type, name: field } = target
         value = (type === 'number') ? +value : value
         if (type === 'date') value = utilService.dateStringToTimestamp(value)
+        console.log('filterByToEdit:', filterByToEdit)
 
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
     }
@@ -72,16 +74,23 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                         <MenuItem value={'utilities'}>Utilities</MenuItem>
                     </Select>
                 </FormControl>
-
-                <input 
-                    type="date"
-                    name="startingDate"
-                    onChange={handleChange} />
-                    
-                <input 
-                    type="date"
-                    name="endingDate"
-                    onChange={handleChange} />
+                <section className="flex date-filter">
+                    <div>
+                        <span>From</span>
+                        <input
+                            type="date"
+                            name="startDate"
+                            onChange={handleChange} />
+                    </div>
+                    <div>
+                        <span>To</span>
+                        <input
+                            type="date"
+                            name="endDate"
+                            onChange={handleChange} />
+                    </div>
+                    <button type="button" onClick={() => setFilterByToEdit(expenseService.getDefaultFilterBy())}>Clear Filter</button>
+                </section>
             </form>
         </section>
 
