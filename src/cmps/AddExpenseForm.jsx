@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
 export function AddExpenseForm({ onAddExpense }) {
-    const [isFormOpen, setIsFormOpen] = useState(true)
+    const [isFormOpen, setIsFormOpen] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
     const [expenseToAdd, setExpenseToAdd] = useState(expenseService.getEmptyExpense())
 
@@ -50,7 +50,8 @@ export function AddExpenseForm({ onAddExpense }) {
         <>
             <Button onClick={() => setIsFormOpen(true)}>Add Expense</Button>
             {isFormOpen &&
-                <section className="add-expense-form flex align-center">
+                <section className="add-expense-form flex column align-center">
+                    <h3>Add Expense</h3>
                     <form onSubmit={handleSubmit} className="flex space-between">
                         <CloseIcon onClick={() => setIsFormOpen(false)} className="close-form-icon" />
                         <TextField

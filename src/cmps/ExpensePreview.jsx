@@ -2,6 +2,11 @@ import { useState } from "react"
 import { utilService } from "../services/util.service"
 import { expenseService } from "../services/expense.service"
 
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
     const [isEditMode, setIsEditMode] = useState(false)
     const [expenseToEdit, setExpenseToEdit] = useState(expenseService.getEmptyExpense())
@@ -15,6 +20,8 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
 
     function updateExpense(ev) {
         ev.preventDefault()
+        expenseToEdit.createdAt = utilService.dateStringToTimestamp(expenseToEdit.createdAt)
+
         setIsEditMode(false)
         onUpdateExpense(expenseToEdit)
     }
@@ -36,10 +43,14 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                     <td>{expense.description}</td>
                     <td>{utilService.capitalizeFirstLetter(expense.category)}</td>
                     <td>${expense.amount}</td>
-                    <td>{expense.createdAt ? utilService.getTimePassed(expense.createdAt) : 'Just Now'}</td>
+                    <td>{expense.createdAt ? utilService.formatTimestamp(expense.createdAt) : 'Just Now'}</td>
                     <td>
-                        <button onClick={() => removeExpense(expense._id)}>X</button>
-                        <button onClick={(ev) => setEditMode(ev, expense, true)}>Edit</button>
+                        <EditIcon
+                            sx={{ color: '#333', cursor: 'pointer' }}
+                            onClick={(ev) => setEditMode(ev, expense, true)} />
+                        <DeleteIcon
+                            sx={{ color: '#333', cursor: 'pointer' }}
+                            onClick={() => removeExpense(expense._id)} />
                     </td>
                 </tr> : (
                     <tr>
@@ -75,11 +86,11 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                                 type="date"
                                 name="createdAt"
                                 onChange={handleChange}
-                                value={expenseToEdit.createdAt}
+                                value={utilService.timestampToDateString(expenseToEdit.createdAt)}
                             /></td>
                         <td>
-                            <button onClick={(ev) => updateExpense(ev)}>Save</button>
-                            <button onClick={(ev) => setEditMode(ev, false)}>Cancel</button>
+                            <SaveIcon onClick={(ev) => updateExpense(ev)}/>
+                            <CancelIcon onClick={(ev) => setEditMode(ev, false)}/>
                         </td>
                     </tr>
                 )}

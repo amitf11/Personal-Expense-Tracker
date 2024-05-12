@@ -28,13 +28,16 @@ export function HomePage() {
 
     return (
         <section className="homepage">
-            <h1>Hello from Homepage</h1>
-            {(loggedInUser) ? <button onClick={() => onLogout()}>Log Out</button>
+            {(loggedInUser) ?
+                <>
+                    <h1>Hello {loggedInUser.fullname}</h1>
+                    <button onClick={() => onLogout()}>Log Out</button>
+                </>
                 : <LoginSignup
                     onLogin={onLogin}
                     isSignUp={isSignUp}
                     setIsSignUp={setIsSignUp} />}
-            <ExpenseIndex />
+            {loggedInUser && <ExpenseIndex />}
         </section>
     )
 }

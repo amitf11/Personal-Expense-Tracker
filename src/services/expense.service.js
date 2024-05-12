@@ -7,18 +7,21 @@ export const expenseService = {
     remove,
     save,
     getEmptyExpense,
+    getDefaultSortBy,
+    getDefaultFilterBy,
     // getByUserId,
 }
 
 const STORAGE_KEY = "expensesDB"
 const BASE_URL = "expense"
 
-async function query(filterBy, sortBy) {
+async function query(filterBy = { description: '' }, sortBy = { by: 'createdAt', asc: false }) {
+    console.log('sortBy:', sortBy)
     return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
 }
 
 async function getById(expenseId) {
-    return storageService.get(STORAGE_KEY, expenseId)
+    // return storageService.get(STORAGE_KEY, expenseId)
 
     //Un-comment when connecting to back-end
     // return httpService.get(`${BASE_URL}/${expenseId}`)
@@ -44,5 +47,23 @@ function getEmptyExpense() {
         description: '',
         category: '',
         amount: 0,
+    }
+}
+
+function getDefaultSortBy() {
+    return {
+        by: 'createdAt',
+        asc: false
+    }
+}
+
+function getDefaultFilterBy() {
+    return {
+        description: '',
+        category: '',
+        minAmount: 0,
+        maxAmount: Infinity,
+        startDate: 0,
+        endDate: Infinity
     }
 }

@@ -4,10 +4,14 @@
     margin-bottom: 2em;
     
     width: min(90%, 800px);
-    padding: 1.5em 2em;
+    padding: 1em 2em;
 
     border: 1px lightgray solid;
     border-radius: 20px;
+
+    h3 {
+        margin: 0 0 16px;
+    }
 
     form {
         width: 100%;
@@ -15,7 +19,14 @@
 
     .close-form-icon{
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 8px;
+        top: 8px;
+        padding: 4px;
+    }
+    .close-form-icon:hover{
+        cursor: pointer;
+        
+        border-radius: 50%;
+        background-color: lightgray;
     }
 }

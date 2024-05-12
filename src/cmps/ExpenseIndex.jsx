@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { ExpenseList } from "./ExpenseList";
-import { useEffect } from "react";
-import { expenseService } from "../services/expense.service";
+import { ExpenseFilter } from "./ExpenseFilter";
+import { ExpenseSort } from "./ExpenseSort";
 import { AddExpenseForm } from "./AddExpenseForm";
+import { expenseService } from "../services/expense.service";
 
 export function ExpenseIndex() {
     const [expenses, setExpenses] = useState([])
+    const [sortBy, setSortBy] = useState(expenseService.getDefaultSortBy())
+    const [filterBy, setFilterBy] = useState(expenseService.getDefaultFilterBy())
 
     useEffect(() => {
-        expenseService.query()
+        expenseService.query(filterBy, sortBy)
             .then(res => setExpenses(res))
-    }, [])
+    }, [filterBy, sortBy])
+
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
+    function onSetSort(sortBy) {
+        setSortBy(sortBy)
+    }
 
     function onAddExpense(expense) {
         expenseService.save(expense)
@@ -27,12 +39,9 @@ export function ExpenseIndex() {
     }
 
     function onUpdateExpense(updatedExpense) {
-        let idx
         let updatedExpenses
         expenseService.save(updatedExpense)
             .then(
-                // idx = expenses.findIndex(expense => expense._id === updatedExpense._id),
-                // expenses.splice(idx, 1, updatedExpense),
                 updatedExpenses = expenses.map(expense => expense._id === updatedExpense._id ? updatedExpense : expense),
                 setExpenses(updatedExpenses)
             )
@@ -41,11 +50,18 @@ export function ExpenseIndex() {
 
     return (
         <>
-            <h1>Hello from ExpenseIndex</h1>
-            <AddExpenseForm 
+            <AddExpenseForm
                 onAddExpense={onAddExpense} />
-            
-            <ExpenseList 
+
+            <ExpenseFilter
+                filterBy={filterBy}
+                onSetFilter={onSetFilter} />
+
+            <ExpenseSort
+                sortBy={sortBy}
+                onSetSort={onSetSort} />
+
+            <ExpenseList
                 expenses={expenses}
                 onRemoveExpense={onRemoveExpense}
                 onUpdateExpense={onUpdateExpense} />

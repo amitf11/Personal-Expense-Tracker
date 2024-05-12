@@ -2,11 +2,12 @@
     table {
         width: min(100%, 1000px);
         margin-inline: auto;
-        border-collapse: collapse;
         padding: 1em 1.5em;
+        margin-top: 40px;
+        border-collapse: collapse;
         border-radius: 20px;
         background-color: #f1f7fe;
-        box-shadow: 0 0 2em hsl(231, 62%, 94%);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     
     thead {
@@ -16,11 +17,11 @@
         th{
             padding: 12px 20px;
             
-            &:first-child{
+            &:first-child {
                 border-top-left-radius: 20px;
             }
 
-            &:last-child{
+            &:last-child {
                 border-top-right-radius: 20px;
             }
         }

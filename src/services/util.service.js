@@ -1,48 +1,61 @@
 export const utilService = {
-    saveToStorage,
-    loadFromStorage,
-    getTimePassed,
-    capitalizeFirstLetter
+  saveToStorage,
+  loadFromStorage,
+  formatTimestamp,
+  capitalizeFirstLetter,
+  dateStringToTimestamp,
+  timestampToDateString
 }
 
 function saveToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+  localStorage.setItem(key, JSON.stringify(value))
 }
 
 function loadFromStorage(key) {
-    const data = localStorage.getItem(key)
-    return (data) ? JSON.parse(data) : undefined
+  const data = localStorage.getItem(key)
+  return (data) ? JSON.parse(data) : undefined
 }
 
 function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function getTimePassed(timestamp) {
-    const currTime = new Date()
-    const timeDiff = currTime - timestamp
+function formatTimestamp(timestamp) {
+  const now = new Date();
+  const date = new Date(timestamp);
 
-    const secDiff = timeDiff / 1000
+  const isSameDay = now.getDate() === date.getDate() &&
+    now.getMonth() === date.getMonth() &&
+    now.getFullYear() === date.getFullYear();
 
-    if (secDiff < 120) {
-        return "Just now"
-    } else if (secDiff < 3600) {
-        const minutes = Math.floor(secDiff / 60)
-        return `${minutes} minutes ago`
-    } else if (secDiff < 86400) {
-        const hours = Math.floor(secDiff / 3600)
-        return `${hours} hour(s) ago`
-    } else if (secDiff < 604800) { // 7 days in seconds
-        const days = Math.floor(secDiff / 86400)
-        return `${days} day(s) ago`
-    } else if (secDiff < 2629800) { // 30.44 days in seconds (average month)
-        const weeks = Math.floor(secDiff / 604800)
-        return `${weeks} week(s) ago`
-    } else if (secDiff < 31557600) { // 365.25 days in seconds (average year)
-        const months = Math.floor(secDiff / 2629800)
-        return `${months} month(s) ago`
+  if (isSameDay) {
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / (1000 * 60));
+    if (diffMins < 1) {
+      return 'Just now';
+    } else if (diffMins < 60) {
+      return diffMins + ' minutes ago';
     } else {
-        const years = Math.floor(secDiff / 31557600)
-        return `${years} year(s) ago`
+      const hoursAgo = Math.floor(diffMs / (1000 * 60 * 60));
+      return hoursAgo + ' hours ago';
     }
+  } else {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+  }
+}
+
+function dateStringToTimestamp(dateString) {
+  const [year, month, day] = dateString.split('-').map(Number);
+  const dateObject = new Date(year, month - 1, day); // month - 1 because months are zero-based in JavaScript
+  return dateObject.getTime();
+}
+
+function timestampToDateString(timestamp) {
+  const dateObject = new Date(timestamp);
+  const year = dateObject.getFullYear().toString();
+  const month = (dateObject.getMonth() + 1).toString().padStart(2, '0'); // Add 1 because months are zero-based
+  const day = dateObject.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 }
