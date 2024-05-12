@@ -1,7 +1,7 @@
 .expense-list {
     table {
         text-align: center;
-        width: min(100%, 1000px);
+        width: min(90%, 1000px);
         margin-inline: auto;
         padding: 1em 1.5em;
         margin-top: 10px;
@@ -31,9 +31,86 @@
 
     td {
         padding: 8px 20px;
+        svg {
+            padding: 0 2px;
+        }
     }
 
     .edit-input {
         width: 80px;
+    }
+}
+
+@media (max-width: 875px) {
+    .expense-list {
+        padding: 0;
+        table {
+            padding: .5em 1em;
+
+            thead {
+                color: #fffafa;
+                background-color: #3e4684;
+
+                th {
+                    padding: 8px 12px;
+
+                    &:first-child {
+                        border-top-left-radius: 20px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 20px;
+                    }
+                }
+            }
+
+            td {
+                padding: 4px 8px;
+                font-size: 12px;
+                
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .expense-list {
+
+        table {
+            padding: 0;
+
+            thead {
+                color: #fffafa;
+                background-color: #3e4684;
+
+                th {
+                    padding: 6px 4px;
+                    font-size: 14px;
+                    font-weight: 400;
+
+                    &:first-child {
+                        border-top-left-radius: 20px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 20px;
+                    }
+                }
+            }
+
+            td {
+                padding: 4px 0;
+                font-size: 12px;
+
+                svg {
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .edit-input {
+            width: 65px;
+        }
     }
 }

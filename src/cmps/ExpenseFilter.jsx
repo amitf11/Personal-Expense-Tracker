@@ -25,6 +25,7 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
             <h3>Filter</h3>
             <form className="filter-form">
                 <TextField
+                    className="filter-input"
                     sx={{ width: 120 }}
                     id="outlined-basic"
                     label="Description"
@@ -34,29 +35,10 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                     value={filterBy.description}
                     onChange={handleChange} />
 
-                <TextField
-                    sx={{ width: 120 }}
-                    id="outlined-basic"
-                    label="Min. Amount"
-                    variant="standard"
-                    type="number"
-                    name="minAmount"
-                    value={filterBy.minAmount || ''}
-                    onChange={handleChange} />
-
-                <TextField
-                    sx={{ width: 120 }}
-                    id="outlined-basic"
-                    label="Max. Amount"
-                    variant="standard"
-                    type="number"
-                    name="maxAmount"
-                    value={filterBy.maxAmount === Infinity ? '' : filterBy.maxAmount}
-                    onChange={handleChange} />
-
                 <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select
+                        className="filter-select-input"
                         variant="standard"
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -74,10 +56,34 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                         <MenuItem value={'utilities'}>Utilities</MenuItem>
                     </Select>
                 </FormControl>
+                
+                <TextField
+                    className="filter-input"
+                    sx={{ width: 120 }}
+                    id="outlined-basic"
+                    label="Min. Amount"
+                    variant="standard"
+                    type="number"
+                    name="minAmount"
+                    value={filterBy.minAmount || ''}
+                    onChange={handleChange} />
+
+                <TextField
+                    className="filter-input"
+                    sx={{ width: 120 }}
+                    id="outlined-basic"
+                    label="Max. Amount"
+                    variant="standard"
+                    type="number"
+                    name="maxAmount"
+                    value={filterBy.maxAmount === Infinity ? '' : filterBy.maxAmount}
+                    onChange={handleChange} />
+
                 <section className="flex date-filter">
                     <div>
                         <span>From</span>
                         <input
+                            className="filter-input"
                             type="date"
                             name="startDate"
                             onChange={handleChange} />
@@ -85,6 +91,7 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                     <div>
                         <span>To</span>
                         <input
+                            className="filter-input"
                             type="date"
                             name="endDate"
                             onChange={handleChange} />

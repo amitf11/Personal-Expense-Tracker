@@ -48,65 +48,72 @@ export function AddExpenseForm({ onAddExpense }) {
 
     return (
         <>
-            <Button 
-                sx={{marginTop: '30px'}}
+            <Button
+                sx={{ marginTop: '30px' }}
                 onClick={() => setIsFormOpen(!isFormOpen)}>Add Expense</Button>
             {isFormOpen &&
                 <section className="add-expense-form flex column align-center">
                     <h3>Add Expense</h3>
-                    <form onSubmit={handleSubmit} className="flex space-between">
+                    <form onSubmit={handleSubmit} className="flex justify-center">
                         <CloseIcon onClick={() => setIsFormOpen(false)} className="close-form-icon" />
-                        <TextField
-                            className="material-ui-input"
-                            id="outlined-basic"
-                            label="Description"
-                            variant="outlined"
-                            required
-                            type="text"
-                            name="description"
-                            value={expenseToAdd.description}
-                            onChange={handleChange}
-                            error={!!validationErrors.description}
-                            helperText={validationErrors.description} />
+                        <section className="flex">
 
-                        <TextField
-                            className="material-ui-input"
-                            id="outlined-basic"
-                            label="Amount"
-                            variant="outlined"
-                            required
-                            type="number"
-                            name="amount"
-                            value={!expenseToAdd.amount ? '' : expenseToAdd.amount}
-                            onChange={handleChange}
-                            error={!!validationErrors.amount}
-                            helperText={validationErrors.amount} />
-
-                        <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
-                            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                            <TextField
+                                className="material-ui-input"
+                                id="outlined-basic"
+                                label="Description"
+                                variant="outlined"
                                 required
-                                value={expenseToAdd.category}
-                                label="Category"
-                                name="category"
+                                type="text"
+                                name="description"
+                                value={expenseToAdd.description}
                                 onChange={handleChange}
-                                error={!!validationErrors.category}
-                            // helperText={validationErrors.category}
-                            >
-                                <MenuItem value={'general'}>General</MenuItem>
-                                <MenuItem value={'personal'}>Personal</MenuItem>
-                                <MenuItem value={'food'}>Food</MenuItem>
-                                <MenuItem value={'housing'}>Housing</MenuItem>
-                                <MenuItem value={'transportation'}>Transportation</MenuItem>
-                                <MenuItem value={'utilities'}>Utilities</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <Button onClick={handleSubmit}>Add +</Button>
+                                error={!!validationErrors.description}
+                                helperText={validationErrors.description} />
+
+                            <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
+                                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                                <Select
+
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    required
+                                    value={expenseToAdd.category}
+                                    label="Category"
+                                    name="category"
+                                    onChange={handleChange}
+                                    error={!!validationErrors.category}
+                                // helperText={validationErrors.category}
+                                >
+                                    <MenuItem value={'general'}>General</MenuItem>
+                                    <MenuItem value={'personal'}>Personal</MenuItem>
+                                    <MenuItem value={'food'}>Food</MenuItem>
+                                    <MenuItem value={'housing'}>Housing</MenuItem>
+                                    <MenuItem value={'transportation'}>Transportation</MenuItem>
+                                    <MenuItem value={'utilities'}>Utilities</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </section>
+
+                        <section className="flex align-center add-category">
+                            <TextField
+                                className="material-ui-input"
+                                id="outlined-basic"
+                                label="Amount"
+                                variant="outlined"
+                                required
+                                type="number"
+                                name="amount"
+                                value={!expenseToAdd.amount ? '' : expenseToAdd.amount}
+                                onChange={handleChange}
+                                error={!!validationErrors.amount}
+                                helperText={validationErrors.amount} />
+
+                            <Button onClick={handleSubmit}>Add +</Button>
+                        </section>
                     </form>
                 </section>
-                }
+            }
         </>
     )
 }

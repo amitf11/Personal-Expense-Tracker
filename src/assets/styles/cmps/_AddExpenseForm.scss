@@ -30,3 +30,26 @@
         background-color: lightgray;
     }
 }
+
+
+@media (max-width: 875px) {
+    .add-expense-form {
+        width: min(420px, 90%);
+        font-size: 12px;
+        form {
+            align-items: space-between;
+            flex-direction: column;
+            .add-category {
+                width: 100%;
+            }
+        }
+        h3 {
+            margin-bottom: 4px;
+        }
+    }
+}
+
+
+@media (max-width: 500px) {
+
+}

@@ -1,5 +1,47 @@
 .index-container {
     margin-inline: auto;
-    width: min(1000px, 90%);
+    width: min(1000px, 100%);
     padding: 0 32px;
+}
+
+.index-filter-container {
+    margin-inline: auto;
+    width: min(1000px, 100%);
+    padding: 0 32px;
+
+}
+
+@media (max-width: 875px) {
+    
+    .index-container {
+        padding: 0;
+        button {
+            margin: 0;
+            padding: 0 32px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    
+        .index-filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .expense-sort {
+                align-items: center;
+                flex-direction: row;
+
+                h3 {
+                    margin-right: 16px;
+                }
+
+                button {
+                    margin-right: 8px;
+                }
+            }
+        }
+    
 }

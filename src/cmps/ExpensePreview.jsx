@@ -64,6 +64,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                             /></td>
                         <td>
                             <select
+                                className="edit-input"
                                 name="category"
                                 onChange={handleChange}
                                 value={expenseToEdit.category}
@@ -85,6 +86,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                             /></td>
                         <td>
                             <input
+                                className="edit-input"
                                 type="date"
                                 name="createdAt"
                                 onChange={handleChange}
@@ -92,7 +94,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                             /></td>
                         <td>
                             <SaveIcon onClick={(ev) => updateExpense(ev)}><span></span></SaveIcon>
-                            <CancelIcon onClick={(ev) => setEditMode(ev, false)}/>
+                            <CancelIcon onClick={(ev) => setEditMode(ev, false)} />
                         </td>
                     </tr>
                 )}

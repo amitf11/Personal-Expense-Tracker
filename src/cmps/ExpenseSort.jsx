@@ -10,7 +10,7 @@ export function ExpenseSort({ sortBy, onSetSort }) {
         onSetSort(updatedSort)
     }
 
-    return <section className="expense-sort flex column">
+    return <section className="flex column expense-sort">
         <h3>Sort</h3>
 
         <div>

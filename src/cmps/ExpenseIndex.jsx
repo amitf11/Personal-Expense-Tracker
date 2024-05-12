@@ -51,7 +51,7 @@ export function ExpenseIndex() {
     return (
         <>
 
-            <div className="flex space-between index-container">
+            <div className="flex space-between index-filter-container">
                 <ExpenseFilter
                     filterBy={filterBy}
                     onSetFilter={onSetFilter} />
