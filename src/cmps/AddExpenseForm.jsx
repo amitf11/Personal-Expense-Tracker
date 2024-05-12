@@ -48,7 +48,9 @@ export function AddExpenseForm({ onAddExpense }) {
 
     return (
         <>
-            <Button onClick={() => setIsFormOpen(true)}>Add Expense</Button>
+            <Button 
+                sx={{marginTop: '30px'}}
+                onClick={() => setIsFormOpen(!isFormOpen)}>Add Expense</Button>
             {isFormOpen &&
                 <section className="add-expense-form flex column align-center">
                     <h3>Add Expense</h3>

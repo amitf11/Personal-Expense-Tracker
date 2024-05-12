@@ -24,7 +24,7 @@ export function ExpenseIndex() {
         setSortBy(sortBy)
     }
 
-    function onAddExpense(expense) {
+    async function onAddExpense(expense) {
         expenseService.save(expense)
             .then(setExpenses(prevExpenses => [...prevExpenses, expense]))
     }
@@ -50,21 +50,26 @@ export function ExpenseIndex() {
 
     return (
         <>
-            <AddExpenseForm
-                onAddExpense={onAddExpense} />
 
-            <ExpenseFilter
-                filterBy={filterBy}
-                onSetFilter={onSetFilter} />
+            <div className="flex space-between index-container">
+                <ExpenseFilter
+                    filterBy={filterBy}
+                    onSetFilter={onSetFilter} />
 
-            <ExpenseSort
-                sortBy={sortBy}
-                onSetSort={onSetSort} />
+                <ExpenseSort
+                    sortBy={sortBy}
+                    onSetSort={onSetSort} />
+            </div>
 
-            <ExpenseList
-                expenses={expenses}
-                onRemoveExpense={onRemoveExpense}
-                onUpdateExpense={onUpdateExpense} />
+            <div className="index-container">
+                <AddExpenseForm
+                    onAddExpense={onAddExpense} />
+
+                <ExpenseList
+                    expenses={expenses}
+                    onRemoveExpense={onRemoveExpense}
+                    onUpdateExpense={onUpdateExpense} />
+            </div>
         </>
     )
 }

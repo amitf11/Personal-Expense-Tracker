@@ -17,8 +17,9 @@ export function ExpenseList({ expenses, onRemoveExpense, onUpdateExpense }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map(expense => (
+                    {expenses.map((expense, index) => (
                         <ExpensePreview
+                            key={index}
                             expense={expense}
                             onRemoveExpense={onRemoveExpense}
                             onUpdateExpense={onUpdateExpense}

@@ -1,22 +1,23 @@
 .expense-list {
     table {
+        text-align: center;
         width: min(100%, 1000px);
         margin-inline: auto;
         padding: 1em 1.5em;
-        margin-top: 40px;
+        margin-top: 10px;
         border-collapse: collapse;
         border-radius: 20px;
         background-color: #f1f7fe;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     thead {
         color: #fffafa;
         background-color: #3e4684;
 
-        th{
+        th {
             padding: 12px 20px;
-            
+
             &:first-child {
                 border-top-left-radius: 20px;
             }
@@ -26,9 +27,13 @@
             }
         }
     }
-    
-    
+
+
     td {
         padding: 8px 20px;
+    }
+
+    .edit-input {
+        width: 80px;
     }
 }

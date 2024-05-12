@@ -10,10 +10,13 @@ export function ExpenseSort({ sortBy, onSetSort }) {
         onSetSort(updatedSort)
     }
 
-    return <section className="Expense-sort">
-        <h3>Sort Expenses:</h3>
-        <button onClick={() => handleSortChange('amount')}>By amount</button>
-        <button onClick={() => handleSortChange('createdAt')}>By date</button>
-        <button onClick={handleToggleDirection}>{sortBy.asc ? '^' : 'v'}</button>
+    return <section className="expense-sort flex column space-between">
+        <h3>Sort</h3>
+
+        <div>
+            <button onClick={() => handleSortChange('amount')}>By amount</button>
+            <button onClick={() => handleSortChange('createdAt')}>By date</button>
+            <button onClick={handleToggleDirection}>{sortBy.asc ? '^' : 'v'}</button>
+        </div>
     </section>
 }

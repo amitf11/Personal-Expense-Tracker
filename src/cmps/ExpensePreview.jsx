@@ -56,6 +56,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                     <tr>
                         <td>
                             <input
+                                className="edit-input"
                                 type="text"
                                 name="description"
                                 onChange={handleChange}
@@ -76,6 +77,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                             </select></td>
                         <td>
                             <input
+                                className="edit-input"
                                 type="number"
                                 name="amount"
                                 onChange={handleChange}
@@ -89,7 +91,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
                                 value={utilService.timestampToDateString(expenseToEdit.createdAt)}
                             /></td>
                         <td>
-                            <SaveIcon onClick={(ev) => updateExpense(ev)}/>
+                            <SaveIcon onClick={(ev) => updateExpense(ev)}><span></span></SaveIcon>
                             <CancelIcon onClick={(ev) => setEditMode(ev, false)}/>
                         </td>
                     </tr>
