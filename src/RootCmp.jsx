@@ -1,3 +1,4 @@
+import { AppHeader } from './cmps/AppHeader'
 import { HomePage } from './pages/HomePage'
 
 function RootCmp() {

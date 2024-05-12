@@ -46,9 +46,9 @@ function formatTimestamp(timestamp) {
 }
 
 function dateStringToTimestamp(dateString) {
-  const [year, month, day] = dateString.split('-').map(Number);
-  const dateObject = new Date(year, month - 1, day); // month - 1 because months are zero-based in JavaScript
-  return dateObject.getTime();
+  const [year, month, day] = dateString.split('-').map(Number)
+  const dateObject = new Date(year, month - 1, day)
+  return dateObject.getTime()
 }
 
 function timestampToDateString(timestamp) {

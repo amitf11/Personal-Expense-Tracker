@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { utilService } from "../services/util.service";
 
 
 export function ExpenseFilter({ onSetFilter, filterBy }) {
@@ -12,6 +13,8 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
     function handleChange({ target }) {
         let { value, type, name: field } = target
         value = (type === 'number') ? +value : value
+        if (type === 'date') value = utilService.dateStringToTimestamp(value)
+
         setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
     }
 
@@ -69,6 +72,16 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                         <MenuItem value={'utilities'}>Utilities</MenuItem>
                     </Select>
                 </FormControl>
+
+                <input 
+                    type="date"
+                    name="startingDate"
+                    onChange={handleChange} />
+                    
+                <input 
+                    type="date"
+                    name="endingDate"
+                    onChange={handleChange} />
             </form>
         </section>
 

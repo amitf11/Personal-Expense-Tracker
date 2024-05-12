@@ -5,8 +5,6 @@ const BASE_URL = 'auth/'
 const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
-
-
 export const userService = {
     login,
     logout,
@@ -32,7 +30,6 @@ async function signup({ username, password, fullname }) {
         }
     } catch (err) {
         console.log('Had issues in signup', err)
-        // showErrorMsg('Cannot sign up')
     }
 }
 

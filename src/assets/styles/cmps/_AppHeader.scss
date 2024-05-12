@@ -1,0 +1,19 @@
+header {
+    width: 100%;
+    color: white;
+    background-color: #3e4684;
+
+    .header-container {
+        width: min(1400px, 100%);
+        margin-inline: auto;
+        margin-bottom: 24px;
+        height: 80px;
+        padding: 0 32px;
+
+        .user-details {
+            h4 {
+                padding: 0 8px;
+            }
+        }
+    }
+}

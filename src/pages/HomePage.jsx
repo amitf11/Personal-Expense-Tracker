@@ -2,11 +2,11 @@ import { useState } from "react";
 import { LoginSignup } from "../cmps/LoginSignup";
 import { ExpenseIndex } from "../cmps/ExpenseIndex";
 import { userService } from "../services/user.service";
-import { useLoggedInUser } from "../custom hooks/loggedinUser";
+import { AppHeader } from "../cmps/AppHeader";
 
 export function HomePage() {
     const [isSignUp, setIsSignUp] = useState(false)
-    const [loggedInUser, setloggedInUser] = useLoggedInUser()
+    const [loggedInUser, setloggedInUser] = useState(userService.getLoggedinUser())
 
     function onLogin(credentials) {
         isSignUp ? _signup(credentials) : _login(credentials)
@@ -28,17 +28,23 @@ export function HomePage() {
     }
 
     return (
-        <section className="homepage">
+        <>
             {(loggedInUser) ?
                 <>
-                    <h1>Hello {loggedInUser.fullname}</h1>
-                    <button onClick={() => onLogout()}>Log Out</button>
-                    <ExpenseIndex />
+                    <header>
+                        <AppHeader
+                            loggedInUser={loggedInUser}
+                            onLogout={onLogout}
+                        />
+                    </header>
+                    <section className="homepage">
+                        <ExpenseIndex />
+                    </section>
                 </>
                 : <LoginSignup
                     onLogin={onLogin}
                     isSignUp={isSignUp}
                     setIsSignUp={setIsSignUp} />}
-        </section>
+        </>
     )
 }

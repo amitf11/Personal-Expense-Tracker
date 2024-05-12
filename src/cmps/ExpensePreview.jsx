@@ -14,7 +14,7 @@ export function ExpensePreview({ expense, onRemoveExpense, onUpdateExpense }) {
     function handleChange({ target }) {
         let { value, name: field, type } = target
         value = (type === 'number') ? +value : value
-
+        value = (type === 'date') ? value.toString() : value
         setExpenseToEdit(prevExpense => ({ ...prevExpense, [field]: value }))
     }
 

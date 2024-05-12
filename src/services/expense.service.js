@@ -16,7 +16,6 @@ const STORAGE_KEY = "expensesDB"
 const BASE_URL = "expense"
 
 async function query(filterBy = { description: '' }, sortBy = { by: 'createdAt', asc: false }) {
-    console.log('sortBy:', sortBy)
     return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
 }
 
