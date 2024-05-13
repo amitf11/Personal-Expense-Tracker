@@ -1,7 +1,17 @@
 .filter-container {
+    margin-left: 40px;
     .filter-form {
         &>*:not(:last-child) {
             margin-right: 12px;
+        }
+
+        .clear-filter-btn {
+            font-weight: 400;
+            padding: .8em;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            background: #3e4684;
         }
     }
 
@@ -13,11 +23,8 @@
             margin-right: 8px;
         }
     }
-
-    .expense-sort {
-        justify-content: flex-end;
-    }
 }
+
 
 @media (max-width: 875px) {
     .filter-container {
@@ -28,11 +35,24 @@
                 height: 40px;
             }
 
+            .date-filter {
+                justify-content: space-around;
+                .date-filter-input-container {
+                    font-size: 12px;
+                    width: 102px;
+                }
+            }
+
             .filter-select-input {
                 padding: 0;
             }
+
+            .clear-filter-btn {
+                font-size: 12px;
+                padding: 0.2em 0.8em;
+            }
         }
-    
+
     }
 
 }

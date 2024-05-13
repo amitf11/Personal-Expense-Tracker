@@ -2,3 +2,17 @@
     width: min(100%, 1400px);
     margin-inline: auto;
 }
+
+nav {
+    button {
+        font-weight: 600;
+        border: none;
+        background-color: white;
+        color: #3e4684;
+    }
+}
+
+.canvas-container {
+    margin-top: 24px;
+    // width: min(90%, 850px);
+}

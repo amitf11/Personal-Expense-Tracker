@@ -5,9 +5,13 @@ import { ExpenseFilter } from "./ExpenseFilter";
 import { ExpenseSort } from "./ExpenseSort";
 import { AddExpenseForm } from "./AddExpenseForm";
 import { expenseService } from "../services/expense.service";
+import { Button } from "@mui/material";
+import { Chart } from "./Chart";
 
 export function ExpenseIndex() {
     const [expenses, setExpenses] = useState([])
+    const [isFormOpen, setIsFormOpen] = useState(false)
+    const [selectedCmp, setSelectedCmp] = useState('index')
     const [sortBy, setSortBy] = useState(expenseService.getDefaultSortBy())
     const [filterBy, setFilterBy] = useState(expenseService.getDefaultFilterBy())
 
@@ -50,26 +54,44 @@ export function ExpenseIndex() {
 
     return (
         <>
+            <nav className="flex justify-center">
+                <button onClick={() => setSelectedCmp('index')}>Tracker</button>
+                <button onClick={() => setSelectedCmp('statistics')}>Statistics</button>
+            </nav>
+            {selectedCmp === 'statistics' &&
+                <div className="flex justify-center canvas-container">
+                    <Chart
+                        expenses={expenses} />
+                </div>}
 
-            <div className="flex space-between index-filter-container">
-                <ExpenseFilter
-                    filterBy={filterBy}
-                    onSetFilter={onSetFilter} />
+            {selectedCmp === 'index' &&
+                <>
+                    <div className="flex space-between index-filter-container">
+                        <ExpenseFilter
+                            filterBy={filterBy}
+                            onSetFilter={onSetFilter} />
 
-                <ExpenseSort
-                    sortBy={sortBy}
-                    onSetSort={onSetSort} />
-            </div>
+                    </div>
 
-            <div className="index-container">
-                <AddExpenseForm
-                    onAddExpense={onAddExpense} />
+                    <div className="index-container">
+                        <div className="flex space-between sort-and-add-continer">
+                            <button onClick={() => setIsFormOpen(!isFormOpen)}>Add Expense</button>
+                            <ExpenseSort
+                                sortBy={sortBy}
+                                onSetSort={onSetSort} />
+                        </div>
+                        <AddExpenseForm
+                            isFormOpen={isFormOpen}
+                            setIsFormOpen={setIsFormOpen}
+                            onAddExpense={onAddExpense} />
 
-                <ExpenseList
-                    expenses={expenses}
-                    onRemoveExpense={onRemoveExpense}
-                    onUpdateExpense={onUpdateExpense} />
-            </div>
+                        <ExpenseList
+                            expenses={expenses}
+                            onRemoveExpense={onRemoveExpense}
+                            onUpdateExpense={onUpdateExpense} />
+                    </div>
+                </>
+            }
         </>
     )
 }

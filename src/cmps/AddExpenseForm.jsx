@@ -4,8 +4,8 @@ import { expenseService } from "../services/expense.service";
 import CloseIcon from '@mui/icons-material/Close'
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
-export function AddExpenseForm({ onAddExpense }) {
-    const [isFormOpen, setIsFormOpen] = useState(false)
+export function AddExpenseForm({ onAddExpense, isFormOpen, setIsFormOpen }) {
+   
     const [validationErrors, setValidationErrors] = useState({})
     const [expenseToAdd, setExpenseToAdd] = useState(expenseService.getEmptyExpense())
 
@@ -48,11 +48,9 @@ export function AddExpenseForm({ onAddExpense }) {
 
     return (
         <>
-            <Button
-                sx={{ marginTop: '30px' }}
-                onClick={() => setIsFormOpen(!isFormOpen)}>Add Expense</Button>
+
             {isFormOpen &&
-                <section className="add-expense-form flex column align-center">
+                <section className="flex column align-center add-expense-form">
                     <h3>Add Expense</h3>
                     <form onSubmit={handleSubmit} className="flex justify-center">
                         <CloseIcon onClick={() => setIsFormOpen(false)} className="close-form-icon" />
@@ -62,7 +60,7 @@ export function AddExpenseForm({ onAddExpense }) {
                                 className="material-ui-input"
                                 id="outlined-basic"
                                 label="Description"
-                                variant="outlined"
+                                variant="standard"
                                 required
                                 type="text"
                                 name="description"
@@ -74,7 +72,7 @@ export function AddExpenseForm({ onAddExpense }) {
                             <FormControl className="material-ui-input" sx={{ minWidth: 120 }}>
                                 <InputLabel id="demo-simple-select-label">Category</InputLabel>
                                 <Select
-
+                                    variant="standard"
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     required
@@ -100,7 +98,7 @@ export function AddExpenseForm({ onAddExpense }) {
                                 className="material-ui-input"
                                 id="outlined-basic"
                                 label="Amount"
-                                variant="outlined"
+                                variant="standard"
                                 required
                                 type="number"
                                 name="amount"

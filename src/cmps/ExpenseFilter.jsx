@@ -80,23 +80,23 @@ export function ExpenseFilter({ onSetFilter, filterBy }) {
                     onChange={handleChange} />
 
                 <section className="flex date-filter">
-                    <div>
+                    <div className="date-filter-input-container">
                         <span>From</span>
                         <input
-                            className="filter-input"
+                            className="date-filter-input"
                             type="date"
                             name="startDate"
                             onChange={handleChange} />
                     </div>
-                    <div>
+                    <div className="date-filter-input-container">
                         <span>To</span>
                         <input
-                            className="filter-input"
+                            className="date-filter-input"
                             type="date"
                             name="endDate"
                             onChange={handleChange} />
                     </div>
-                    <button type="button" onClick={() => setFilterByToEdit(expenseService.getDefaultFilterBy())}>Clear Filter</button>
+                    <button className="clear-filter-btn" type="button" onClick={() => setFilterByToEdit(expenseService.getDefaultFilterBy())}>Clear Filter</button>
                 </section>
             </form>
         </section>

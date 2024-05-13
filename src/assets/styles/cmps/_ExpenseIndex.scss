@@ -11,37 +11,94 @@
 
 }
 
+.sort-and-add-continer {
+    width: min(90%, 1000px);
+    margin-inline: auto;
+
+    button {
+        font-weight: 400;
+        padding: 0.8em;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        background: #3e4684;
+        margin-left: 8px;
+    }
+
+    .expense-sort {
+        gap: 12px;
+
+        .sort-btns {
+            button {
+                font-weight: 400;
+                padding: 0.8em;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                background: #3e4684;
+                margin-left: 8px;
+            }
+        }
+    }
+}
+
 @media (max-width: 875px) {
-    
+
     .index-container {
         padding: 0;
+
         button {
             margin: 0;
             padding: 0 32px;
             font-size: 12px;
         }
     }
-}
 
-@media (max-width: 800px) {
-    
-        .index-filter-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            
-            .expense-sort {
-                align-items: center;
-                flex-direction: row;
+    .sort-and-add-continer {
+        margin-top: 12px;
 
-                h3 {
-                    margin-right: 16px;
-                }
+        button {
+            padding: 0.6em 0.8em;
+        }
+        .expense-sort {
+            gap: 4px;
+            font-size: 14px;
 
+            .sort-btns {
                 button {
-                    margin-right: 8px;
+                    font-weight: 400;
+                    padding: 0.6em 0.8em;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    background: #3e4684;
+                    margin-left: 6px;
                 }
             }
         }
-    
+    }
+}
+
+@media (max-width: 800px) {
+
+    .index-filter-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .expense-sort {
+            align-items: center;
+            flex-direction: row;
+
+            h3 {
+                margin-right: 16px;
+            }
+
+            button {
+                margin-right: 8px;
+
+            }
+        }
+    }
+
 }
